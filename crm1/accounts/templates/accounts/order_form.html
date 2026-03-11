@@ -1,0 +1,30 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<div class="card card-body">
+    <h5>Order Form</h5>
+    <hr>
+    <style>
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        button {
+            margin-top: 1rem;
+        }
+    </style>
+    <form method="post">
+        {% csrf_token %}
+        {{ form}}
+        {% comment %} <input type="submit" name="Submit" placeholder="Product Name" class="form-control mb-2"> {% endcomment %}
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+{% endblock %}
