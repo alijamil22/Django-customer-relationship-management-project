@@ -68,26 +68,30 @@
 
     <form method="post">
         {% csrf_token %}
-        {{ formset.management_form }}
-        
-        <div class="formset-container">
-            {% for form in formset %}
-                <div class="form-row">
-                    <div class="form-field" style="flex: 2;">
-                        {{ form.product.label_tag }}
-                        {{ form.product }}
+        {% if formset%}
+            {{ formset.management_form }}
+            
+            <div class="formset-container">
+                {% for form in formset %}
+                    <div class="form-row">
+                        <div class="form-field" style="flex: 2;">
+                            {{ form.product.label_tag }}
+                            {{ form.product }}
+                        </div>
+                        <div class="form-field" style="flex: 1.5;">
+                            {{ form.status.label_tag }}
+                            {{ form.status }}
+                        </div>
+                        <div class="delete-field">
+                            {{ form.DELETE }}
+                            <label for="{{ form.DELETE.id_for_label }}">Delete</label>
+                        </div>
                     </div>
-                    <div class="form-field" style="flex: 1.5;">
-                        {{ form.status.label_tag }}
-                        {{ form.status }}
-                    </div>
-                    <div class="delete-field">
-                        {{ form.DELETE }}
-                        <label for="{{ form.DELETE.id_for_label }}">Delete</label>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.as_p }}
+        {% endif %}
         
         <button class="btn btn-primary submit-btn" type="submit">Submit</button>
     </form>

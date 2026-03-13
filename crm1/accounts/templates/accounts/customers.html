@@ -2,7 +2,18 @@
 
     {% block content %}
     <br>
+	{% comment %} <style>
+		.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
+.filter-form label{
+    margin-right:5px;
+}
+	</style> {% endcomment %}
 <div class="row">
 	<div class="col-md">
 		<div class="card card-body">
@@ -37,8 +48,21 @@
 <div class="row">
 	<div class="col">
 		<div class="card card-body">
-			<form method="get">
+			<form method="get" class="filter-form">
+		{{ myFilter.form.product.label_tag }}
+		{{ myFilter.form.product }}
 
+		{{ myFilter.form.status.label_tag }}
+		{{ myFilter.form.status }}
+
+		{{ myFilter.form.start_date.label_tag }}
+		{{ myFilter.form.start_date }}
+
+		{{ myFilter.form.end_date.label_tag }}
+		{{ myFilter.form.end_date }}
+
+		{{ myFilter.form.note.label_tag }}
+		{{ myFilter.form.note }}
 		    <button class="btn btn-primary" type="submit">Search</button>
 		  </form>
 		</div>
@@ -53,20 +77,20 @@
 			<table class="table table-sm">
 				<tr>
 					<th>Product</th>
-					<th>Category</th>
+					<th>Note</th>
 					<th>Date Ordered</th>
 					<th>Status</th>
 					<th>Update</th>
 					<th>Remove</th>
 				</tr>
-				{% for order in order %}
+				{% for order in orders %}
 				<tr>
 					<td>{{ order.product.name }}</td>
-					<td>{{ order.product.category }}</td>
+					<td>{{ order.note }}</td>
 					<td>{{ order.date_created }}</td>
 					<td>{{ order.status }}</td>
-					<td><a href="{% url 'update_order' order.id %}">Update</a></td>
-                    <td><a href="{% url 'delete_order' order.id %}">Delete</a></td>
+					<td><a class="btn btn-outline-info btn-sm" href="{% url 'update_order' order.id %}">Update</a></td>
+                    <td><a class = "btn btn-danger btn-sm" href="{% url 'delete_order' order.id %}">Delete</a></td>
 				</tr>
 				{% endfor %}
 			</table>
