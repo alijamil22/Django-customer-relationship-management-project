@@ -1,4 +1,11 @@
 {% load static %}
+<style>
+    .hello-msg {
+        color: white;
+        font-size: 18px;
+        margin-right: 20px;
+    }
+</style>
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
     <img src="{% static 'images/logo.png' %}" class="img-fluid" style="max-height: 40px;">
@@ -16,4 +23,12 @@
       </ul>
     </div>
   </div>
+    {% if user.is_authenticated %}
+      <span class="hello-msg">
+        Hello, {{ user.username }}!
+      </span>
+      <span><a class="btn btn-outline-light" href="{% url 'logout' %}">Logout</a></span>
+    {% else %}
+      <span><a class="btn btn-outline-light" href="{% url 'login' %}">Login</a></span>
+    {% endif %}
 </nav>

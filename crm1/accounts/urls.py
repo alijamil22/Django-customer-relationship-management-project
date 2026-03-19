@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
 urlpatterns = [
+    # here the authentication and authorization will be implemented in the future.
+    path('register/',views.registerPage,name='register'),
+    path('login/',views.loginPage,name='login'),
+    path('logout/',views.logoutUser,name='logout'),
+    # the main urls of the project
     path('',views.home,name='home'),
     path('products/',views.products,name='products'),
     path('customers/<str:pk>/',views.customer,name='customer'),
