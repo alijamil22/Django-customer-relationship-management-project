@@ -7,6 +7,7 @@ urlpatterns = [
     path('logout/',views.logoutUser,name='logout'),
     # the main urls of the project
     path('',views.home,name='home'),
+    path('user/',views.userPage,name='userPage'),
     path('products/',views.products,name='products'),
     path('customers/<str:pk>/',views.customer,name='customer'),
     path('create_order/<str:pk>/',views.createOrder,name='create_order'),
