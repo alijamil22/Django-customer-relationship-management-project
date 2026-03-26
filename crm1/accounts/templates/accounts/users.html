@@ -2,5 +2,20 @@
 
 {% block content %}
     {% include 'accounts/status.html' %}
-    <h3>Users Profile</h3>
+    <table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Note</th>
+					<th>Date Ordered</th>
+					<th>Status</th>
+				</tr>
+				{% for order in orders %}
+				<tr>
+					<td>{{ order.product.name }}</td>
+					<td>{{ order.note }}</td>
+					<td>{{ order.date_created }}</td>
+					<td>{{ order.status }}</td>
+				</tr>
+				{% endfor %}
+			</table>
 {% endblock content %}
